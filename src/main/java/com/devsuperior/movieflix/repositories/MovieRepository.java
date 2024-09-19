@@ -1,7 +1,6 @@
 package com.devsuperior.movieflix.repositories;
 
 
-import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,5 +21,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 			countQuery = "SELECT COUNT(obj) FROM Movie obj "
 					+ "WHERE (:genreId IS NULL OR obj.genre.id = :genreId) ")
 	Page<Movie> findByGenre(Long genreId, Pageable pageable);
+	
+	
 	
 }

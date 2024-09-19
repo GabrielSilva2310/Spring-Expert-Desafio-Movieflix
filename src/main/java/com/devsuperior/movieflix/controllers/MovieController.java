@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.devsuperior.movieflix.dto.MovieCardDTO;
 import com.devsuperior.movieflix.dto.MovieDetailsDTO;
+import com.devsuperior.movieflix.dto.ReviewDTO;
 import com.devsuperior.movieflix.services.MovieService;
 
 @Controller
@@ -39,6 +40,14 @@ public class MovieController {
 			Pageable pageable){
 		Page<MovieCardDTO> page=service.findByGenre(genreId, pageable);
 		return ResponseEntity.ok().body(page);
+		
+	}
+	
+	@PreAuthorize("hasAnyRole('ROLE_MEMBER', 'ROLE_VISITOR')")
+	@GetMapping(value = "/{id}/reviews")
+	public ResponseEntity<List<ReviewDTO>> findMovieReviewsById(@PathVariable Long id){
+		List<ReviewDTO> list=service.findMovieReviewsById(id);
+		return ResponseEntity.ok().body(list);
 		
 	}
 
