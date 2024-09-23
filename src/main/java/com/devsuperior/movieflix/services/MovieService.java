@@ -51,9 +51,7 @@ public class MovieService {
 	
 	@Transactional(readOnly = true)
 	public List<ReviewDTO> findMovieReviewsById(Long movieId){
-		
-		List<ReviewDTO> list=reviewRepository.findMovieReviewsById(movieId);		
-	
+		List<ReviewDTO> list=reviewRepository.findMovieReviewsById(movieId);
 		return list;
 		
 	}
